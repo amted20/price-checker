@@ -55,7 +55,7 @@ for (const product of products) {
 const reducePriceList = [];
 if (priceList.length) {
   for (const price of priceList) {
-    if (price.price === 2000) {
+    if (price.price < Number(process.env.PRODUCT_PRICE)) {
       reducePriceList.push(price);
     }
   }
