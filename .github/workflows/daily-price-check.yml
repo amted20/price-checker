@@ -1,0 +1,30 @@
+name: daily-price-report
+
+on:
+  schedule:
+    - cron: "0 18 * * *"
+  workflow_dispatch:
+
+jobs:
+  run-js:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20.x"
+
+      - name: Install dependencies and run index.js
+        run: |
+          npm install
+          node index.js
+        env:
+          EMAIL_USERNAME: ${{ secrets.EMAIL_USERNAME }}
+          EMAIL_APP_PASSWORD: ${{ secrets.EMAIL_APP_PASSWORD }}
+          EMAIL_SEND_TO: ${{ secrets.EMAIL_SEND_TO }}
+          SONY_URL: ${{ secrets.SONY_URL }}
+          BEST_BUY_URL: ${{ secrets.BEST_BUY_URL }}
