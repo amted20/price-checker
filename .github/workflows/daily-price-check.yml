@@ -28,3 +28,5 @@ jobs:
           EMAIL_SEND_TO: ${{ secrets.EMAIL_SEND_TO }}
           SONY_URL: ${{ secrets.SONY_URL }}
           BEST_BUY_URL: ${{ secrets.BEST_BUY_URL }}
+          PRODUCT_PRICE: ${{ secrets.PRODUCT_PRICE }}
+          TEST_PRICE: ${{ secrets.TEST_PRICE }}

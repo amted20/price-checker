@@ -7,6 +7,8 @@ const products = [
 ];
 
 async function scrapeParagraph(product) {
+  console.log(`company url: ${process.env.SONY_URL}`)
+  console.log(`company url 2: ${process.env.TEST_PRICE}`)
   try {
     const response = await fetch(product.url);
     const html = await response.text();
@@ -53,12 +55,19 @@ for (const product of products) {
 }
 
 const reducePriceList = [];
+console.log("Price list length: ", priceList.length)
 if (priceList.length) {
   for (const price of priceList) {
     if (price.price < Number(process.env.PRODUCT_PRICE)) {
+      console.log('low price', process.env.PRODUCT_PRICE)
       reducePriceList.push(price);
+    } else {
+      console.log(`Pice was not lower than: ${process.env.PRODUCT_PRICE}`)
     }
   }
 }
 
-if (reducePriceList.length) sendEmail(reducePriceList);
+if (reducePriceList.length) {
+  console.log("Price is lower now", process.env.TEST_PRICE)
+  // sendEmail(reducePriceList);
+}
